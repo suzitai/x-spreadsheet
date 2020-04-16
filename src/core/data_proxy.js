@@ -161,7 +161,7 @@ function setStyleBorder(ri, ci, bss) {
   if (cell.style !== undefined) {
     cstyle = helper.cloneDeep(styles[cell.style]);
   }
-  Object.assign(cstyle, { border: bss });
+  cstyle = helper.merge(cstyle, { border: bss });
   cell.style = this.addStyle(cstyle);
 }
 
@@ -1020,6 +1020,7 @@ export default class DataProxy {
     const {
       scroll, rows, cols, freeze, exceptRowSet,
     } = this;
+    // console.log('scroll:', scroll, ', freeze:', freeze)
     let { ri, ci } = scroll;
     if (ri <= 0) [ri] = freeze;
     if (ci <= 0) [, ci] = freeze;
